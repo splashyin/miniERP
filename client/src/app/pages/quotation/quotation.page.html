@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Quotation</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button (click)="addQuot()">Add</ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="quots">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let q of quots.quotations; index as i">
+    <ion-card-header (click)="modify(q)">
+      <ion-card-title>
+        {{q.title}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item (click)="modify(q)">
+        Due Date: {{q.end_date}}
+      </ion-item>
+      <ion-item>
+        <ion-buttons>
+          <ion-button *ngIf="q.status === '03' || q.status === '01'" (click)="winQuot(q)">
+            <ion-icon name="checkmark-circle" size="small" [ngClass]="{'win': q.status == '03'}"></ion-icon>
+             Win
+          </ion-button>
+          <ion-button *ngIf="q.status === '02' || q.status === '01'" (click)="lostQuot(q)">
+            <ion-icon name="close-circle" size="small" [ngClass]="{'lost': q.status == '02'}"></ion-icon>
+             Lost
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

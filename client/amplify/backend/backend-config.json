@@ -1,0 +1,13 @@
+{
+	"auth": {
+		"cognito552c4898": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"analytics": {},
+	"storage": {},
+	"function": {},
+	"api": {},
+	"hosting": {}
+}

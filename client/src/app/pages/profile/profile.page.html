@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-item>
+    <ion-label>First Name</ion-label>
+    <ion-input (change)="updateYou()" [(ngModel)]="user.firstName" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Last Name</ion-label>
+    <ion-input (change)="updateYou()" [(ngModel)]="user.lastName" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input (change)="updateYou()" [(ngModel)]="user.email" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Mobile</ion-label>
+    <ion-input (change)="updateYou()" [(ngModel)]="user.phoneNumber" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Company</ion-label>
+    <ion-input (change)="updateYourCompany()" [(ngModel)]="company.companyName" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>GST Number</ion-label>
+    <ion-input (change)="updateYourCompany()" [(ngModel)]="company.gstNumber" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Company Address</ion-label>
+    <ion-input (change)="updateYourCompany()" [(ngModel)]="company.companyAddressStreet" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>License Number</ion-label>
+    <ion-input (change)="updateYourCompany()" [(ngModel)]="company.licenseNumber" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Account Name</ion-label>
+    <ion-input (change)="updateYourBankcard()" [(ngModel)]="bankcard.accountName" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>BSB</ion-label>
+    <ion-input (change)="updateYourBankcard()" [(ngModel)]="bankcard.bsb" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Account Number</ion-label>
+    <ion-input (change)="updateYourBankcard()" [(ngModel)]="bankcard.accountNumber" slot="end"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Bank Name</ion-label>
+    <ion-input (change)="updateYourBankcard()" [(ngModel)]="bankcard.bankName" slot="end"></ion-input>
+  </ion-item>
+
+  <!-- <ion-button expand="full" (click) ="sendPostRequestUpdateYou()">Save</ion-button> -->
+
+</ion-content>

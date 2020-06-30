@@ -1,0 +1,201 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{viewTitle}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="today()">Today</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Quotation Card -->
+  <ion-card>
+    <ion-card-header tappable (click)="collapseCard = !collapseCard">
+      <ion-card-title>New Quotation</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="!!collapseCard">
+      <ion-item>
+        <ion-input type="text" placeholder="Quotation Title" [(ngModel)]="event.title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Description" [(ngModel)]="event.desc"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Onsite Date</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime"
+          [min]="minDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Expire Date</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime"
+          [min]="minDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Customer First Name" [(ngModel)]="customer.first_name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Customer Last Name" [(ngModel)]="customer.last_name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="tel" placeholder="Customer Phone" [(ngModel)]="customer.phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="email" placeholder="Customer Email" [(ngModel)]="customer.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Customer Address" [(ngModel)]="customer.location"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea placeholder="Notes" [(ngModel)]="event.note"></ion-textarea>
+      </ion-item>
+      <ion-button fill="outline" expand="block" (click)="addQuot()" [disabled]="event.title == ''">Add Quotation
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Job Card -->
+  <ion-card>
+    <ion-card-header tappable (click)="collapseJob = !collapseJob">
+      <ion-card-title>New Job</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="!!collapseJob">
+      <ion-item>
+        <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Description" [(ngModel)]="event.desc"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Start</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime"
+          [min]="minDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>End</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime"
+          [min]="minDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>All day?</ion-label>
+        <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Customer First Name" [(ngModel)]="customer.first_name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Customer Last Name" [(ngModel)]="customer.last_name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="tel" placeholder="Customer Phone" [(ngModel)]="customer.phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="email" placeholder="Customer Email" [(ngModel)]="customer.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Customer Address" [(ngModel)]="customer.location"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea placeholder="Notes" [(ngModel)]="event.note"></ion-textarea>
+      </ion-item>
+      <ion-button fill="outline" expand="block" (click)="addEvent()" [disabled]="event.title == ''">Add Job
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Invoice Card -->
+  <ion-card>
+    <ion-card-header tappable (click)="collapseInvoice = !collapseInvoice">
+      <ion-card-title>New Invoice</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="!!collapseInvoice">
+      <ion-item>
+        <ion-input type="text" placeholder="Item Title" [(ngModel)]="item.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Description" [(ngModel)]="item.description"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="Quantity" [(ngModel)]="item.quantity"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Unit Type" [(ngModel)]="item.unit"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Rate" [(ngModel)]="item.rate"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="GST" [(ngModel)]="item.gst"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Total" [(ngModel)]="item.total"></ion-input>
+      </ion-item>
+      <ion-button fill="outline" expand="block" (click)="addInvoice()" [disabled]="item.name == ''">Add Invoice
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+  <ion-row>
+    <!-- Change the displayed calendar mode-->
+    <ion-col size="4">
+      <ion-button expand="block" [color]="calendar.mode == 'month'?'primary':'light'" (click)="changeMode('month')">
+        Month
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button expand="block" [color]="calendar.mode == 'week'?'primary':'light'" (click)="changeMode('week')">
+        Week
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button expand="block" [color]="calendar.mode == 'day'?'primary':'light'" (click)="changeMode('day')">Day
+      </ion-button>
+    </ion-col>
+    <ion-col size="6" text-left>
+      <ion-button fill="clear" (click)="back()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="6" text-right>
+      <ion-button fill="clear" (click)="next()">
+        <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+
+  </ion-row>
+
+  <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+    (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
+    (onTimeSelected)="onTimeSelected($event)" startHour="6" endHour="20" step="30" startingDayWeek="1">
+  </calendar>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="alert" (click)="gotoQuotation()"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button>
+        <ion-icon name="hammer" (click)="gotoJob()"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="end">
+      <ion-fab-button>
+        <ion-icon name="logo-usd" (click)="gotoInvoice()"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>

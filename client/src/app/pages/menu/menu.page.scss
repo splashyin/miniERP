@@ -1,0 +1,19 @@
+.active-item {
+    border-left: 8px solid #ffa600;
+}
+
+.active {
+    --ion-text-color: #ffa600;
+    ion-icon {
+        --ion-text-color-rgb: #ffa600;
+    }
+}
+
+.active-parent {
+    font-weight: 500;
+}
+
+.sub-item {
+    padding-left: 20px;
+    font-size: small;
+}

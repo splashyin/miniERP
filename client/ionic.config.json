@@ -1,0 +1,7 @@
+{
+  "name": "fancy-todos",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

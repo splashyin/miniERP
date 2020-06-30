@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cancelled Jobs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="cancelled_jobs">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let cancelledJob of cancelled_jobs.jobs; index as i">
+    <ion-card-header>
+      <ion-card-title>{{cancelledJob.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        Due Date: {{cancelledJob.end_date}}
+      </ion-item>
+      <ion-item>
+        <ion-buttons>
+          <ion-button  *ngIf="cancelledJob.processState === '03' || cancelledJob.processState === '01'">
+            <ion-icon name="checkmark-circle" size="small" [ngClass]="{'win': cancelledJob.processState == '03'}"></ion-icon>
+            Mark Finish
+          </ion-button>
+          <ion-button *ngIf="cancelledJob.processState === '02' || cancelledJob.processState === '01'">
+            <ion-icon name="close-circle" size="small" [ngClass]="{'lost': cancelledJob.processState == '02'}"></ion-icon>
+            Mark Cancel
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  
+</ion-content>

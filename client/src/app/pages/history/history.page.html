@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>History</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button (click)="addQuot()">Add</ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="quot_historys">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let history of quot_historys.historys; index as i">
+    <ion-card-header>
+      <ion-card-title>{{history.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        Due Date: {{history.end_date}}
+      </ion-item>
+      <ion-item>
+        <ion-buttons>
+          <ion-button  *ngIf="history.status === '03' || history.status === '01'">
+            <ion-icon name="checkmark-circle" size="small" [ngClass]="{'win': history.processState == '03'}"></ion-icon>
+            Mark Finish
+          </ion-button>
+          <ion-button *ngIf="history.status === '02' || history.status === '01'">
+            <ion-icon name="close-circle" size="small" [ngClass]="{'lost': history.processState == '02'}"></ion-icon>
+            Mark Cancel
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  
+</ion-content>
